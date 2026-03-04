@@ -1,27 +1,22 @@
 'use client'
-import { useEffect, useRef } from 'react'
+import { useEffect } from 'react'
 
 export default function Home() {
-  // Intersection Observer para animações ao scroll
   useEffect(() => {
     const observer = new IntersectionObserver(
       (entries) => {
         entries.forEach((entry) => {
-          if (entry.isIntersecting) {
-            entry.target.classList.add('visible')
-          }
+          if (entry.isIntersecting) entry.target.classList.add('visible')
         })
       },
-      { threshold: 0.15 }
+      { threshold: 0.12 }
     )
-
     document.querySelectorAll('.scroll-reveal').forEach((el) => observer.observe(el))
     return () => observer.disconnect()
   }, [])
 
   return (
     <>
-      {/* LINHA ANIMADA */}
       <div className="line-draw" />
 
       {/* NAVBAR */}
@@ -35,65 +30,36 @@ export default function Home() {
           <li><a href="#equipa">Equipa</a></li>
           <li><a href="#contactos">Contactos</a></li>
         </ul>
-        <a href="#contactos" className="btn-primary">Contacte-nos</a>
+        <a href="#contactos" className="btn-nav">Contacte-nos</a>
       </nav>
 
       {/* HERO */}
       <section className="hero">
-        <div className="hero-watermark">CF</div>
-        <div className="hero-inner">
-
-          {/* Texto — fade in de cima para baixo */}
-          <div className="hero-left">
-            <div className="hero-eyebrow hero-anim" style={{ animationDelay: '0.1s' }}>
-              Escritório de Solicitadoria — Coimbra
-            </div>
-            <h1 className="hero-title hero-anim" style={{ animationDelay: '0.25s' }}>
-              Os seus direitos,<br />
-              <em>simplificados.</em>
-            </h1>
-            <p className="hero-text hero-anim" style={{ animationDelay: '0.4s' }}>
-              Mais de 30 anos de experiência em serviços jurídicos e
-              administrativos. Tratamos dos seus processos com rigor,
-              ética e um acompanhamento verdadeiramente pessoal.
-            </p>
-            <div className="hero-actions hero-anim" style={{ animationDelay: '0.55s' }}>
-              <a href="#contactos" className="btn-primary">Agendar Consulta</a>
-              <a href="#servicos" className="btn-outline">Ver Serviços</a>
-            </div>
+        <div className="hero-content">
+          <div className="hero-label hero-anim" style={{ animationDelay: '0.2s' }}>
+            Escritório de Solicitadoria — Coimbra
           </div>
-
-          {/* Stats card — efeito cortina da esquerda */}
-          <div className="hero-right">
-            <div className="curtain-wrapper">
-              <div className="curtain-reveal">
-                <div className="stats-card">
-                  <div className="stat-row">
-                    <div className="stat-number">30<sup>+</sup></div>
-                    <div className="stat-info">
-                      <div className="stat-label">Anos de experiência</div>
-                      <div className="stat-desc">Solicitadora desde 1992</div>
-                    </div>
-                  </div>
-                  <div className="stat-row">
-                    <div className="stat-number">2003</div>
-                    <div className="stat-info">
-                      <div className="stat-label">Especialização</div>
-                      <div className="stat-desc">Agente de Execução</div>
-                    </div>
-                  </div>
-                  <div className="stat-row">
-                    <div className="stat-number">4</div>
-                    <div className="stat-info">
-                      <div className="stat-label">Equipa</div>
-                      <div className="stat-desc">Profissionais ao seu serviço</div>
-                    </div>
-                  </div>
-                </div>
-              </div>
-            </div>
+          <h1 className="hero-title hero-anim" style={{ animationDelay: '0.4s' }}>
+            Os seus direitos,<br />simplificados.
+          </h1>
+          <p className="hero-sub hero-anim" style={{ animationDelay: '0.6s' }}>
+            Mais de 30 anos de experiência em serviços jurídicos e administrativos.<br />
+            Tratamos dos seus processos com rigor, ética e um toque pessoal.
+          </p>
+          <div className="hero-actions hero-anim" style={{ animationDelay: '0.8s' }}>
+            <a href="#servicos" className="btn-gold">Ver Serviços</a>
+            <a href="#contactos" className="btn-dark">Agendar Consulta</a>
           </div>
+        </div>
 
+        {/* Duas fotos a emergir em baixo */}
+        <div className="hero-photos hero-anim" style={{ animationDelay: '1s' }}>
+          <div className="hero-photo-left">
+            <img src="/fundo.jpg" alt="Escritório" />
+          </div>
+          <div className="hero-photo-right">
+            <img src="/fundo.jpg" alt="Serviços jurídicos" />
+          </div>
         </div>
       </section>
 
@@ -125,9 +91,9 @@ export default function Home() {
             </p>
             <p style={{ fontSize: '0.92rem', color: 'var(--gray)', lineHeight: '1.85', marginTop: '1.25rem' }}>
               O nosso escritório, situado no coração de Coimbra, presta serviços
-              jurídicos e administrativos com rigor e proximidade. Acreditamos que
-              cada cliente merece um acompanhamento personalizado, garantindo segurança
-              jurídica em todos os processos.
+              jurídicos e administrativos com rigor e proximidade. Cada cliente
+              merece um acompanhamento personalizado, garantindo segurança jurídica
+              em todos os processos.
             </p>
             <div className="sobre-tags">
               <span className="tag">Solicitadora</span>
@@ -153,21 +119,16 @@ export default function Home() {
             </div>
           </div>
 
-          {/* Cards em cascata */}
           <div className="servicos-grid">
             {[
               { icon: '🏠', num: '01', title: 'Direito Imobiliário', text: 'Assessoria jurídica em todas as fases de negócios imobiliários, garantindo segurança em cada transação.' },
               { icon: '⚖️', num: '02', title: 'Agente de Execução', text: 'Tramitação de processos executivos com rigor e eficiência, representando os seus interesses.' },
-              { icon: '📜', num: '03', title: 'Registos e Notariado', text: 'Tratamos de todos os registos necessários para garantir a validade legal de documentos e atos jurídicos.' },
-              { icon: '🏛️', num: '04', title: 'Heranças e Sucessões', text: 'Planeamento e gestão de heranças com o rigor e o conhecimento jurídico que a situação exige.' },
-              { icon: '🏢', num: '05', title: 'Apoio a Empresas', text: 'Apoiamos empresários e sociedades em todas as formalidades legais, da constituição à gestão diária.' },
-              { icon: '💼', num: '06', title: 'Consultoria Jurídica', text: 'Orientação jurídica e administrativa para particulares e empresas, resolvendo questões burocráticas com eficácia.' },
+              { icon: '📜', num: '03', title: 'Registos e Notariado', text: 'Tratamos de todos os registos necessários para garantir a validade legal dos documentos.' },
+              { icon: '🏛️', num: '04', title: 'Heranças e Sucessões', text: 'Planeamento e gestão de heranças com rigor e conhecimento jurídico.' },
+              { icon: '🏢', num: '05', title: 'Apoio a Empresas', text: 'Apoiamos empresários em todas as formalidades legais, da constituição à gestão diária.' },
+              { icon: '💼', num: '06', title: 'Consultoria Jurídica', text: 'Orientação jurídica para particulares e empresas, resolvendo questões burocráticas com eficácia.' },
             ].map((s, i) => (
-              <div
-                className="servico-card scroll-reveal reveal-up"
-                key={i}
-                style={{ transitionDelay: `${i * 0.1}s` }}
-              >
+              <div className="servico-card scroll-reveal reveal-up" key={i} style={{ transitionDelay: `${i * 0.12}s` }}>
                 <div className="servico-number">{s.num}</div>
                 <span className="servico-icon">{s.icon}</span>
                 <div className="servico-title">{s.title}</div>
@@ -186,7 +147,6 @@ export default function Home() {
             <div className="section-label">A Nossa Equipa</div>
             <h2 className="section-title">Profissionais ao seu serviço</h2>
           </div>
-
           <div className="equipa-grid">
             {[
               { name: 'Cristina Frade', role: 'Solicitadora · Agente de Execução' },
@@ -194,11 +154,7 @@ export default function Home() {
               { name: 'Filipa Machado', role: 'Licenciada em Solicitadoria' },
               { name: 'Magda Paiva', role: 'Empregada Forense' },
             ].map((m, i) => (
-              <div
-                className="membro-card scroll-reveal reveal-up"
-                key={i}
-                style={{ transitionDelay: `${i * 0.12}s` }}
-              >
+              <div className="membro-card scroll-reveal reveal-up" key={i} style={{ transitionDelay: `${i * 0.15}s` }}>
                 <div className="membro-avatar">👤</div>
                 <div className="membro-name">{m.name}</div>
                 <div className="membro-role">{m.role}</div>
@@ -215,52 +171,34 @@ export default function Home() {
             <div className="section-label">Contactos</div>
             <h2 className="section-title">Fale connosco</h2>
           </div>
-
           <div className="contactos-inner" style={{ marginTop: '3rem' }}>
             <div className="scroll-reveal reveal-left">
-              <div className="contacto-item">
-                <div className="contacto-icon">📍</div>
-                <div>
-                  <div className="contacto-label">Morada</div>
-                  <span className="contacto-value">Av. Elísio de Moura 445 E/P<br />3030-183 Coimbra</span>
+              {[
+                { icon: '📍', label: 'Morada', value: 'Av. Elísio de Moura 445 E/P\n3030-183 Coimbra', href: null },
+                { icon: '📞', label: 'Telefone', value: '239 168 295', href: 'tel:239168295', note: 'Chamada para rede fixa nacional' },
+                { icon: '✉️', label: 'Email', value: '2260@cristinafrade.pt', href: 'mailto:2260@cristinafrade.pt' },
+                { icon: '🕐', label: 'Horário', value: '9h30 – 12h30 / 13h30 – 16h00', href: null },
+              ].map((c, i) => (
+                <div className="contacto-item" key={i}>
+                  <div className="contacto-icon">{c.icon}</div>
+                  <div>
+                    <div className="contacto-label">{c.label}</div>
+                    {c.href
+                      ? <a href={c.href} className="contacto-value">{c.value}</a>
+                      : <span className="contacto-value" style={{ whiteSpace: 'pre-line' }}>{c.value}</span>
+                    }
+                    {c.note && <div style={{ fontSize: '0.72rem', color: 'var(--gray)', marginTop: '3px' }}>{c.note}</div>}
+                  </div>
                 </div>
-              </div>
-              <div className="contacto-item">
-                <div className="contacto-icon">📞</div>
-                <div>
-                  <div className="contacto-label">Telefone</div>
-                  <a href="tel:239168295" className="contacto-value">239 168 295</a>
-                  <div style={{ fontSize: '0.72rem', color: 'var(--gray)', marginTop: '3px' }}>Chamada para rede fixa nacional</div>
-                </div>
-              </div>
-              <div className="contacto-item">
-                <div className="contacto-icon">✉️</div>
-                <div>
-                  <div className="contacto-label">Email</div>
-                  <a href="mailto:2260@cristinafrade.pt" className="contacto-value">2260@cristinafrade.pt</a>
-                </div>
-              </div>
-              <div className="contacto-item">
-                <div className="contacto-icon">🕐</div>
-                <div>
-                  <div className="contacto-label">Horário</div>
-                  <span className="contacto-value">9h30 – 12h30 / 13h30 – 16h00</span>
-                </div>
-              </div>
+              ))}
             </div>
 
             <div className="scroll-reveal reveal-right">
               <div className="form-title">Envie-nos uma mensagem</div>
               <div className="form-subtitle">Responderemos com a maior brevidade possível.</div>
               <div className="form-row">
-                <div className="form-group">
-                  <label>Nome</label>
-                  <input type="text" placeholder="O seu nome" />
-                </div>
-                <div className="form-group">
-                  <label>Email</label>
-                  <input type="email" placeholder="email@exemplo.com" />
-                </div>
+                <div className="form-group"><label>Nome</label><input type="text" placeholder="O seu nome" /></div>
+                <div className="form-group"><label>Email</label><input type="email" placeholder="email@exemplo.com" /></div>
               </div>
               <div className="form-group">
                 <label>Área de interesse</label>
@@ -274,13 +212,8 @@ export default function Home() {
                   <option>Consultoria Jurídica</option>
                 </select>
               </div>
-              <div className="form-group">
-                <label>Mensagem</label>
-                <textarea placeholder="Descreva brevemente a sua situação..."></textarea>
-              </div>
-              <button className="btn-primary" style={{ width: '100%', padding: '1rem', fontSize: '0.8rem' }}>
-                Enviar Mensagem
-              </button>
+              <div className="form-group"><label>Mensagem</label><textarea placeholder="Descreva brevemente a sua situação..."></textarea></div>
+              <button className="btn-primary" style={{ width: '100%', padding: '1rem', fontSize: '0.8rem' }}>Enviar Mensagem</button>
             </div>
           </div>
         </div>
@@ -290,9 +223,7 @@ export default function Home() {
       <footer>
         <div className="footer-inner">
           <div className="footer-logo">Cristina Frade</div>
-          <div className="footer-text">
-            © {new Date().getFullYear()} Cristina Frade — Solicitadora. Todos os direitos reservados.
-          </div>
+          <div className="footer-text">© {new Date().getFullYear()} Cristina Frade — Solicitadora. Todos os direitos reservados.</div>
           <div className="footer-text">Coimbra, Portugal</div>
         </div>
       </footer>
