@@ -1,6 +1,24 @@
 'use client'
+import { useEffect, useRef } from 'react'
 
 export default function Home() {
+  // Intersection Observer para animações ao scroll
+  useEffect(() => {
+    const observer = new IntersectionObserver(
+      (entries) => {
+        entries.forEach((entry) => {
+          if (entry.isIntersecting) {
+            entry.target.classList.add('visible')
+          }
+        })
+      },
+      { threshold: 0.15 }
+    )
+
+    document.querySelectorAll('.scroll-reveal').forEach((el) => observer.observe(el))
+    return () => observer.disconnect()
+  }, [])
+
   return (
     <>
       {/* LINHA ANIMADA */}
@@ -24,55 +42,65 @@ export default function Home() {
       <section className="hero">
         <div className="hero-watermark">CF</div>
         <div className="hero-inner">
+
+          {/* Texto — fade in de cima para baixo */}
           <div className="hero-left">
-            <div className="hero-eyebrow">Escritório de Solicitadoria — Coimbra</div>
-            <h1 className="hero-title">
+            <div className="hero-eyebrow hero-anim" style={{ animationDelay: '0.1s' }}>
+              Escritório de Solicitadoria — Coimbra
+            </div>
+            <h1 className="hero-title hero-anim" style={{ animationDelay: '0.25s' }}>
               Os seus direitos,<br />
               <em>simplificados.</em>
             </h1>
-            <p className="hero-text">
+            <p className="hero-text hero-anim" style={{ animationDelay: '0.4s' }}>
               Mais de 30 anos de experiência em serviços jurídicos e
               administrativos. Tratamos dos seus processos com rigor,
               ética e um acompanhamento verdadeiramente pessoal.
             </p>
-            <div className="hero-actions">
+            <div className="hero-actions hero-anim" style={{ animationDelay: '0.55s' }}>
               <a href="#contactos" className="btn-primary">Agendar Consulta</a>
               <a href="#servicos" className="btn-outline">Ver Serviços</a>
             </div>
           </div>
 
+          {/* Stats card — efeito cortina da esquerda */}
           <div className="hero-right">
-            <div className="stats-card">
-              <div className="stat-row">
-                <div className="stat-number">30<sup>+</sup></div>
-                <div className="stat-info">
-                  <div className="stat-label">Anos de experiência</div>
-                  <div className="stat-desc">Solicitadora desde 1992</div>
-                </div>
-              </div>
-              <div className="stat-row">
-                <div className="stat-number">2003</div>
-                <div className="stat-info">
-                  <div className="stat-label">Especialização</div>
-                  <div className="stat-desc">Agente de Execução</div>
-                </div>
-              </div>
-              <div className="stat-row">
-                <div className="stat-number">4</div>
-                <div className="stat-info">
-                  <div className="stat-label">Equipa</div>
-                  <div className="stat-desc">Profissionais ao seu serviço</div>
+            <div className="curtain-wrapper">
+              <div className="curtain-reveal">
+                <div className="stats-card">
+                  <div className="stat-row">
+                    <div className="stat-number">30<sup>+</sup></div>
+                    <div className="stat-info">
+                      <div className="stat-label">Anos de experiência</div>
+                      <div className="stat-desc">Solicitadora desde 1992</div>
+                    </div>
+                  </div>
+                  <div className="stat-row">
+                    <div className="stat-number">2003</div>
+                    <div className="stat-info">
+                      <div className="stat-label">Especialização</div>
+                      <div className="stat-desc">Agente de Execução</div>
+                    </div>
+                  </div>
+                  <div className="stat-row">
+                    <div className="stat-number">4</div>
+                    <div className="stat-info">
+                      <div className="stat-label">Equipa</div>
+                      <div className="stat-desc">Profissionais ao seu serviço</div>
+                    </div>
+                  </div>
                 </div>
               </div>
             </div>
           </div>
+
         </div>
       </section>
 
       {/* SOBRE */}
       <section className="sobre" id="sobre">
         <div className="container sobre-inner">
-          <div className="sobre-visual">
+          <div className="sobre-visual scroll-reveal reveal-left">
             <div className="sobre-image-placeholder">
               <div className="sobre-image-inner">
                 <div className="sobre-image-icon">👤</div>
@@ -85,7 +113,7 @@ export default function Home() {
             </div>
           </div>
 
-          <div>
+          <div className="scroll-reveal reveal-right">
             <div className="section-label">Sobre Nós</div>
             <h2 className="section-title">Uma carreira construída sobre confiança</h2>
             <blockquote className="sobre-quote">
@@ -114,7 +142,7 @@ export default function Home() {
       {/* SERVIÇOS */}
       <section id="servicos">
         <div className="container">
-          <div className="servicos-header">
+          <div className="servicos-header scroll-reveal reveal-up">
             <div>
               <div className="section-label">Áreas de Atuação</div>
               <h2 className="section-title">Como podemos ajudá-lo</h2>
@@ -125,6 +153,7 @@ export default function Home() {
             </div>
           </div>
 
+          {/* Cards em cascata */}
           <div className="servicos-grid">
             {[
               { icon: '🏠', num: '01', title: 'Direito Imobiliário', text: 'Assessoria jurídica em todas as fases de negócios imobiliários, garantindo segurança em cada transação.' },
@@ -134,7 +163,11 @@ export default function Home() {
               { icon: '🏢', num: '05', title: 'Apoio a Empresas', text: 'Apoiamos empresários e sociedades em todas as formalidades legais, da constituição à gestão diária.' },
               { icon: '💼', num: '06', title: 'Consultoria Jurídica', text: 'Orientação jurídica e administrativa para particulares e empresas, resolvendo questões burocráticas com eficácia.' },
             ].map((s, i) => (
-              <div className="servico-card" key={i}>
+              <div
+                className="servico-card scroll-reveal reveal-up"
+                key={i}
+                style={{ transitionDelay: `${i * 0.1}s` }}
+              >
                 <div className="servico-number">{s.num}</div>
                 <span className="servico-icon">{s.icon}</span>
                 <div className="servico-title">{s.title}</div>
@@ -149,8 +182,10 @@ export default function Home() {
       {/* EQUIPA */}
       <section className="equipa" id="equipa">
         <div className="container">
-          <div className="section-label">A Nossa Equipa</div>
-          <h2 className="section-title">Profissionais ao seu serviço</h2>
+          <div className="scroll-reveal reveal-up">
+            <div className="section-label">A Nossa Equipa</div>
+            <h2 className="section-title">Profissionais ao seu serviço</h2>
+          </div>
 
           <div className="equipa-grid">
             {[
@@ -159,7 +194,11 @@ export default function Home() {
               { name: 'Filipa Machado', role: 'Licenciada em Solicitadoria' },
               { name: 'Magda Paiva', role: 'Empregada Forense' },
             ].map((m, i) => (
-              <div className="membro-card" key={i}>
+              <div
+                className="membro-card scroll-reveal reveal-up"
+                key={i}
+                style={{ transitionDelay: `${i * 0.12}s` }}
+              >
                 <div className="membro-avatar">👤</div>
                 <div className="membro-name">{m.name}</div>
                 <div className="membro-role">{m.role}</div>
@@ -172,11 +211,13 @@ export default function Home() {
       {/* CONTACTOS */}
       <section id="contactos">
         <div className="container">
-          <div className="section-label">Contactos</div>
-          <h2 className="section-title">Fale connosco</h2>
+          <div className="scroll-reveal reveal-up">
+            <div className="section-label">Contactos</div>
+            <h2 className="section-title">Fale connosco</h2>
+          </div>
 
           <div className="contactos-inner" style={{ marginTop: '3rem' }}>
-            <div>
+            <div className="scroll-reveal reveal-left">
               <div className="contacto-item">
                 <div className="contacto-icon">📍</div>
                 <div>
@@ -208,7 +249,7 @@ export default function Home() {
               </div>
             </div>
 
-            <div>
+            <div className="scroll-reveal reveal-right">
               <div className="form-title">Envie-nos uma mensagem</div>
               <div className="form-subtitle">Responderemos com a maior brevidade possível.</div>
               <div className="form-row">
