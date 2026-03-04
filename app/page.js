@@ -6,9 +6,9 @@ export default function Home() {
       {/* NAVBAR */}
       <nav className="navbar">
         <a href="#" className="navbar-logo">
-          Cristina Frade
-          <span>Solicitadora</span>
+  <img src="/logo.png" alt="Cristina Frade" style={{ height: '42px', width: 'auto' }} />
         </a>
+        
         <ul className="navbar-links">
           <li><a href="#sobre">Sobre</a></li>
           <li><a href="#servicos">Serviços</a></li>
