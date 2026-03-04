@@ -3,12 +3,14 @@
 export default function Home() {
   return (
     <>
+      {/* LINHA ANIMADA */}
+      <div className="line-draw" />
+
       {/* NAVBAR */}
       <nav className="navbar">
         <a href="#" className="navbar-logo">
-  <img src="/logo.png" alt="Cristina Frade" style={{ height: '42px', width: 'auto' }} />
+          <img src="/logo.png" alt="Cristina Frade" />
         </a>
-        
         <ul className="navbar-links">
           <li><a href="#sobre">Sobre</a></li>
           <li><a href="#servicos">Serviços</a></li>
@@ -20,8 +22,9 @@ export default function Home() {
 
       {/* HERO */}
       <section className="hero">
-        <div className="hero-inner container">
-          <div className="fade-up">
+        <div className="hero-watermark">CF</div>
+        <div className="hero-inner">
+          <div className="hero-left">
             <div className="hero-eyebrow">Escritório de Solicitadoria — Coimbra</div>
             <h1 className="hero-title">
               Os seus direitos,<br />
@@ -29,8 +32,8 @@ export default function Home() {
             </h1>
             <p className="hero-text">
               Mais de 30 anos de experiência em serviços jurídicos e
-              administrativos de qualidade. Tratamos dos seus processos
-              com rigor, ética e um toque pessoal.
+              administrativos. Tratamos dos seus processos com rigor,
+              ética e um acompanhamento verdadeiramente pessoal.
             </p>
             <div className="hero-actions">
               <a href="#contactos" className="btn-primary">Agendar Consulta</a>
@@ -38,21 +41,28 @@ export default function Home() {
             </div>
           </div>
 
-          <div className="hero-visual fade-up-delay-1">
-            <div className="hero-card">
-              <div className="hero-stat">
-                <div className="hero-stat-number">30+</div>
-                <div className="hero-stat-label">Anos de experiência</div>
+          <div className="hero-right">
+            <div className="stats-card">
+              <div className="stat-row">
+                <div className="stat-number">30<sup>+</sup></div>
+                <div className="stat-info">
+                  <div className="stat-label">Anos de experiência</div>
+                  <div className="stat-desc">Solicitadora desde 1992</div>
+                </div>
               </div>
-              <div className="hero-divider"></div>
-              <div className="hero-stat">
-                <div className="hero-stat-number">1992</div>
-                <div className="hero-stat-label">Em atividade desde</div>
+              <div className="stat-row">
+                <div className="stat-number">2003</div>
+                <div className="stat-info">
+                  <div className="stat-label">Especialização</div>
+                  <div className="stat-desc">Agente de Execução</div>
+                </div>
               </div>
-              <div className="hero-divider"></div>
-              <div className="hero-stat">
-                <div className="hero-stat-number">4</div>
-                <div className="hero-stat-label">Profissionais ao seu serviço</div>
+              <div className="stat-row">
+                <div className="stat-number">4</div>
+                <div className="stat-info">
+                  <div className="stat-label">Equipa</div>
+                  <div className="stat-desc">Profissionais ao seu serviço</div>
+                </div>
               </div>
             </div>
           </div>
@@ -62,26 +72,30 @@ export default function Home() {
       {/* SOBRE */}
       <section className="sobre" id="sobre">
         <div className="container sobre-inner">
-          <div className="sobre-image-placeholder">
-            <div className="sobre-image-inner">
-              <div className="sobre-image-icon">👤</div>
-              <div className="sobre-image-text">Foto da Dra. Cristina Frade</div>
-            </div>
-            <div className="sobre-badge">
-              <span className="sobre-badge-year">2003</span>
-              <span className="sobre-badge-label">Agente de Execução</span>
+          <div className="sobre-visual">
+            <div className="sobre-image-placeholder">
+              <div className="sobre-image-inner">
+                <div className="sobre-image-icon">👤</div>
+                <div className="sobre-image-text">Foto da Dra. Cristina Frade</div>
+              </div>
+              <div className="sobre-badge">
+                <span className="sobre-badge-year">1992</span>
+                <span className="sobre-badge-label">Em atividade</span>
+              </div>
             </div>
           </div>
 
           <div>
             <div className="section-label">Sobre Nós</div>
             <h2 className="section-title">Uma carreira construída sobre confiança</h2>
-            <div className="bordeaux-line"></div>
+            <blockquote className="sobre-quote">
+              "Trate dos seus processos com um toque pessoal."
+            </blockquote>
             <p className="section-subtitle">
               Cristina Frade é solicitadora desde 1992, com especialização como
               Agente de Execução desde 2003 e Inspetora/Fiscalizadora da CAAJ desde 2009.
             </p>
-            <p style={{ fontSize: '0.95rem', color: '#6B6B6B', lineHeight: '1.8', marginTop: '1.25rem' }}>
+            <p style={{ fontSize: '0.92rem', color: 'var(--gray)', lineHeight: '1.85', marginTop: '1.25rem' }}>
               O nosso escritório, situado no coração de Coimbra, presta serviços
               jurídicos e administrativos com rigor e proximidade. Acreditamos que
               cada cliente merece um acompanhamento personalizado, garantindo segurança
@@ -90,7 +104,7 @@ export default function Home() {
             <div className="sobre-tags">
               <span className="tag">Solicitadora</span>
               <span className="tag">Agente de Execução</span>
-              <span className="tag">CAAJ</span>
+              <span className="tag">CAAJ — Inspetora</span>
               <span className="tag">Coimbra</span>
             </div>
           </div>
@@ -100,53 +114,32 @@ export default function Home() {
       {/* SERVIÇOS */}
       <section id="servicos">
         <div className="container">
-          <div style={{ maxWidth: '560px' }}>
-            <div className="section-label">Áreas de Atuação</div>
-            <h2 className="section-title">Como podemos ajudá-lo</h2>
-            <div className="bordeaux-line"></div>
-            <p className="section-subtitle">
-              Prestamos serviços especializados em diversas áreas jurídicas,
-              garantindo soluções adaptadas a cada necessidade.
-            </p>
+          <div className="servicos-header">
+            <div>
+              <div className="section-label">Áreas de Atuação</div>
+              <h2 className="section-title">Como podemos ajudá-lo</h2>
+              <p className="section-subtitle">
+                Serviços especializados de Solicitadoria, garantindo assessoria
+                jurídica adaptada a cada necessidade.
+              </p>
+            </div>
           </div>
 
           <div className="servicos-grid">
             {[
-              {
-                icon: '🏠',
-                title: 'Direito Imobiliário',
-                text: 'Assessoria jurídica em todas as fases de negócios imobiliários, garantindo segurança em cada transação.'
-              },
-              {
-                icon: '⚖️',
-                title: 'Agente de Execução',
-                text: 'Tramitação de processos executivos com rigor e eficiência, representando os seus interesses.'
-              },
-              {
-                icon: '📜',
-                title: 'Registos e Notariado',
-                text: 'Tratamos de todos os registos necessários para garantir a validade legal de documentos e atos jurídicos.'
-              },
-              {
-                icon: '🏛️',
-                title: 'Heranças e Sucessões',
-                text: 'Planeamento e gestão de heranças com o rigor e o conhecimento jurídico que a situação exige.'
-              },
-              {
-                icon: '🏢',
-                title: 'Apoio a Empresas',
-                text: 'Apoiamos empresários e sociedades em todas as formalidades legais, da constituição à gestão diária.'
-              },
-              {
-                icon: '💼',
-                title: 'Consultoria Jurídica',
-                text: 'Orientação jurídica e administrativa para particulares e empresas, resolvendo questões burocráticas com eficácia.'
-              },
+              { icon: '🏠', num: '01', title: 'Direito Imobiliário', text: 'Assessoria jurídica em todas as fases de negócios imobiliários, garantindo segurança em cada transação.' },
+              { icon: '⚖️', num: '02', title: 'Agente de Execução', text: 'Tramitação de processos executivos com rigor e eficiência, representando os seus interesses.' },
+              { icon: '📜', num: '03', title: 'Registos e Notariado', text: 'Tratamos de todos os registos necessários para garantir a validade legal de documentos e atos jurídicos.' },
+              { icon: '🏛️', num: '04', title: 'Heranças e Sucessões', text: 'Planeamento e gestão de heranças com o rigor e o conhecimento jurídico que a situação exige.' },
+              { icon: '🏢', num: '05', title: 'Apoio a Empresas', text: 'Apoiamos empresários e sociedades em todas as formalidades legais, da constituição à gestão diária.' },
+              { icon: '💼', num: '06', title: 'Consultoria Jurídica', text: 'Orientação jurídica e administrativa para particulares e empresas, resolvendo questões burocráticas com eficácia.' },
             ].map((s, i) => (
               <div className="servico-card" key={i}>
-                <div className="servico-icon">{s.icon}</div>
+                <div className="servico-number">{s.num}</div>
+                <span className="servico-icon">{s.icon}</span>
                 <div className="servico-title">{s.title}</div>
                 <p className="servico-text">{s.text}</p>
+                <span className="servico-arrow">→</span>
               </div>
             ))}
           </div>
@@ -158,11 +151,10 @@ export default function Home() {
         <div className="container">
           <div className="section-label">A Nossa Equipa</div>
           <h2 className="section-title">Profissionais ao seu serviço</h2>
-          <div className="bordeaux-line"></div>
 
           <div className="equipa-grid">
             {[
-              { name: 'Cristina Frade', role: 'Solicitadora / Agente de Execução' },
+              { name: 'Cristina Frade', role: 'Solicitadora · Agente de Execução' },
               { name: 'Tânia Ferreira', role: 'Licenciada em Direito' },
               { name: 'Filipa Machado', role: 'Licenciada em Solicitadoria' },
               { name: 'Magda Paiva', role: 'Empregada Forense' },
@@ -182,7 +174,6 @@ export default function Home() {
         <div className="container">
           <div className="section-label">Contactos</div>
           <h2 className="section-title">Fale connosco</h2>
-          <div className="bordeaux-line"></div>
 
           <div className="contactos-inner" style={{ marginTop: '3rem' }}>
             <div>
@@ -198,7 +189,7 @@ export default function Home() {
                 <div>
                   <div className="contacto-label">Telefone</div>
                   <a href="tel:239168295" className="contacto-value">239 168 295</a>
-                  <div style={{ fontSize: '0.75rem', color: '#6B6B6B', marginTop: '2px' }}>Chamada para rede fixa nacional</div>
+                  <div style={{ fontSize: '0.72rem', color: 'var(--gray)', marginTop: '3px' }}>Chamada para rede fixa nacional</div>
                 </div>
               </div>
               <div className="contacto-item">
@@ -218,13 +209,17 @@ export default function Home() {
             </div>
 
             <div>
-              <div className="form-group">
-                <label>Nome</label>
-                <input type="text" placeholder="O seu nome" />
-              </div>
-              <div className="form-group">
-                <label>Email</label>
-                <input type="email" placeholder="o-seu-email@exemplo.com" />
+              <div className="form-title">Envie-nos uma mensagem</div>
+              <div className="form-subtitle">Responderemos com a maior brevidade possível.</div>
+              <div className="form-row">
+                <div className="form-group">
+                  <label>Nome</label>
+                  <input type="text" placeholder="O seu nome" />
+                </div>
+                <div className="form-group">
+                  <label>Email</label>
+                  <input type="email" placeholder="email@exemplo.com" />
+                </div>
               </div>
               <div className="form-group">
                 <label>Área de interesse</label>
@@ -242,7 +237,7 @@ export default function Home() {
                 <label>Mensagem</label>
                 <textarea placeholder="Descreva brevemente a sua situação..."></textarea>
               </div>
-              <button className="btn-primary" style={{ width: '100%', padding: '0.9rem' }}>
+              <button className="btn-primary" style={{ width: '100%', padding: '1rem', fontSize: '0.8rem' }}>
                 Enviar Mensagem
               </button>
             </div>
